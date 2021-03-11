@@ -83,18 +83,8 @@ void loop() {
   // io.adafruit.com, and processes any incoming data.
   io.run();
 
-  if (millis() > (lastUpdate + IO_LOOP_DELAY)) {
-    // save count to the 'counter' feed on Adafruit IO
-    Serial.print("sending -> ");
-    Serial.println(count);
-    counter->save(count);
-
-    // increment the count by 1
-    count++;
-
-    // after publishing, store the current time
-    lastUpdate = millis();
-  }
+  //  LED_VERDE->save(count);
+  //  LED_ROJO->save(count);
 
 }
 
