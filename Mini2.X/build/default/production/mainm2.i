@@ -2690,18 +2690,8 @@ void setup(void);
 void main(void) {
     setup();
     while (1) {
-        I2C_Master_Start();
-        I2C_Master_Write(0x50);
-        I2C_Master_Write(PORTB);
-        I2C_Master_Stop();
         _delay((unsigned long)((200)*(8000000/4000.0)));
-
-        I2C_Master_Start();
-        I2C_Master_Write(0x51);
-        PORTD = I2C_Master_Read(0);
-        I2C_Master_Stop();
-        _delay((unsigned long)((200)*(8000000/4000.0)));
-        PORTB++;
+        PORTA = 0b11111111;
     }
     return;
 }
@@ -2717,5 +2707,7 @@ void setup(void){
     TRISD = 0;
     PORTB = 0;
     PORTD = 0;
-    I2C_Master_Init(100000);
+    PORTA = 0;
+    TRISA = 0;
+
 }
