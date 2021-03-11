@@ -44,7 +44,7 @@ AdafruitIO_Feed *LED_ROJO = io.feed("RED_LED");
 void setup() {
 
   // start the serial connection
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   // wait for serial monitor to open
   while(! Serial);
@@ -95,10 +95,12 @@ void handleMessage1(AdafruitIO_Data *data) {
 
   flag_verde = data->value();
   if (flag_verde == "ON"){
-     Serial.write(1);
+     Serial.print("ON");
+     Serial.write(49);
   }
   else if (flag_verde == "OFF") {
-     Serial.write(0);
+     Serial.print("OFF");
+     Serial.write(48);
   }
 
 }
@@ -107,10 +109,12 @@ void handleMessage2(AdafruitIO_Data *data) {
 
   flag_rojo = data->value();
     if (flag_rojo == "ON"){
-     Serial.write(1);
+     Serial.print("ON");
+     Serial.write(49);
     }
     else if (flag_rojo == "OFF") {
-     Serial.write(0);
+     Serial.print("OFF");
+     Serial.write(48);
     }
 
 }
