@@ -2889,15 +2889,16 @@ typedef enum {
 
 
 
-typedef enum {
-    STANDBY_0_5 = 0x00,
-    STANDBY_62_5 = 0x01,
-    STANDBY_125 = 0x02,
-    STANDBY_250 = 0x03,
-    STANDBY_500 = 0x04,
-    STANDBY_1000 = 0x05,
-    STANDBY_2000 = 0x06,
-    STANDBY_4000 = 0x07
+typedef enum
+{
+  STANDBY_0_5 = 0x00,
+  STANDBY_62_5 = 0x01,
+  STANDBY_125 = 0x02,
+  STANDBY_250 = 0x03,
+  STANDBY_500 = 0x04,
+  STANDBY_1000 = 0x05,
+  STANDBY_2000 = 0x06,
+  STANDBY_4000 = 0x07
 } standby_time;
 
 struct {
@@ -2958,14 +2959,18 @@ void Send_String(char* X);
 
 
 
+uint32_t temp;
+char dec;
+char uni;
+char deci;
+char centi;
+char RX;
+
 signed long temperature;
 unsigned long pressure;
-
-
-
-
+# 119 "mainm2.c"
 void setup(void);
-
+void Send_Temp(void);
 
 
 
@@ -2979,6 +2984,33 @@ void main(void) {
         PORTA = 0b11111111;
         BMP280_readTemperature(&temperature);
         BMP280_readPressure(&pressure);
+        Send_Temp();
+        Send_String("S");
+        Send_Data(dec);
+        Send_Data(uni);
+        Send_String(".");
+        Send_Data(deci);
+        Send_Data(centi);
+
+        switch (RX) {
+            case 49:
+                PORTBbits.RB7 = 1;
+                break;
+            case 48:
+                PORTBbits.RB7 = 0;
+                break;
+            case 50:
+                PORTBbits.RB6 = 0;
+                break;
+            case 51:
+                PORTBbits.RB6 = 1;
+                break;
+            default:
+                PORTBbits.RB7 = 0;
+                PORTBbits.RB6 = 0;
+                break;
+        }
+
     }
     return;
 }
@@ -2997,4 +3029,30 @@ void setup(void){
     PORTA = 0;
     TRISA = 0;
     I2C_Master_Init(100000);
+}
+
+
+
+
+
+void Send_Temp(void){
+    temp = temperature;
+    dec = temp /1000;
+    temp = temp - (dec*1000);
+    uni = temp /100;
+    temp = temp - (uni*100);
+    deci = temp /10;
+    temp = temp - (deci*10);
+    centi = temp;
+}
+
+
+
+
+
+void __attribute__((picinterrupt(("")))) isr(void) {
+    if (PIR1bits.RCIF == 1) {
+        RX = Receive_Data();
+        PIR1bits.RCIF = 0;
+    }
 }

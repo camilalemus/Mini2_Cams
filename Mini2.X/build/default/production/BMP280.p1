@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"59 ./BMP280.h
-[; ;./BMP280.h: 59: struct {
+"60 ./BMP280.h
+[; ;./BMP280.h: 60: struct {
 [s S138 `ui 1 `i 1 `i 1 `ui 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 ]
 [n S138 . dig_T1 dig_T2 dig_T3 dig_P1 dig_P2 dig_P3 dig_P4 dig_P5 dig_P6 dig_P7 dig_P8 dig_P9 ]
 "41 ./I2C.h
@@ -271,8 +271,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"73 ./BMP280.h
-[; ;./BMP280.h: 73: } BMP280_calib;
+"74 ./BMP280.h
+[; ;./BMP280.h: 74: } BMP280_calib;
 [v _BMP280_calib `S138 ~T0 @X0 1 e ]
 "33 BMP280.c
 [; ;BMP280.c: 33: int32_t adc_T, adc_P, t_fine;

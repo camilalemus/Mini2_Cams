@@ -2669,47 +2669,40 @@ void I2C_Slave_Init(uint8_t address);
 
 
 
-void I2C_Master_Init(const unsigned long c)
-{
+
+void I2C_Master_Init(const unsigned long c) {
     SSPCON = 0b00101000;
     SSPCON2 = 0;
-    SSPADD = (8000000/(4*c))-1;
+    SSPADD = (8000000 / (4 * c)) - 1;
     SSPSTAT = 0;
     TRISCbits.TRISC3 = 1;
     TRISCbits.TRISC4 = 1;
 }
-
-
-
-
-
-
-
-void I2C_Master_Wait()
-{
+# 33 "I2C.c"
+void I2C_Master_Wait() {
     while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 }
 
 
 
-void I2C_Master_Start()
-{
+
+void I2C_Master_Start() {
     I2C_Master_Wait();
     SSPCON2bits.SEN = 1;
 }
 
 
 
-void I2C_Master_RepeatedStart()
-{
+
+void I2C_Master_RepeatedStart() {
     I2C_Master_Wait();
     SSPCON2bits.RSEN = 1;
 }
 
 
 
-void I2C_Master_Stop()
-{
+
+void I2C_Master_Stop() {
     I2C_Master_Wait();
     SSPCON2bits.PEN = 1;
 }
@@ -2718,8 +2711,8 @@ void I2C_Master_Stop()
 
 
 
-void I2C_Master_Write(unsigned d)
-{
+
+void I2C_Master_Write(unsigned d) {
     I2C_Master_Wait();
     SSPBUF = d;
 }
@@ -2727,27 +2720,27 @@ void I2C_Master_Write(unsigned d)
 
 
 
-unsigned short I2C_Master_Read(unsigned short a)
-{
-    unsigned short temp;
+
+unsigned short I2C_Master_Read(unsigned short a) {
+    unsigned short temp1;
     I2C_Master_Wait();
     SSPCON2bits.RCEN = 1;
     I2C_Master_Wait();
-    temp = SSPBUF;
+    temp1 = SSPBUF;
     I2C_Master_Wait();
-    if(a == 1){
+    if (a == 1) {
         SSPCON2bits.ACKDT = 0;
-    }else{
+    } else {
         SSPCON2bits.ACKDT = 1;
     }
     SSPCON2bits.ACKEN = 1;
-    return temp;
+    return temp1;
 }
 
 
 
-void I2C_Slave_Init(uint8_t address)
-{
+
+void I2C_Slave_Init(uint8_t address) {
     SSPADD = address;
     SSPCON = 0x36;
     SSPSTAT = 0x80;

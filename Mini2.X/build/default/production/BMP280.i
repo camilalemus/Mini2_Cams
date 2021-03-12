@@ -2699,15 +2699,16 @@ typedef enum {
 
 
 
-typedef enum {
-    STANDBY_0_5 = 0x00,
-    STANDBY_62_5 = 0x01,
-    STANDBY_125 = 0x02,
-    STANDBY_250 = 0x03,
-    STANDBY_500 = 0x04,
-    STANDBY_1000 = 0x05,
-    STANDBY_2000 = 0x06,
-    STANDBY_4000 = 0x07
+typedef enum
+{
+  STANDBY_0_5 = 0x00,
+  STANDBY_62_5 = 0x01,
+  STANDBY_125 = 0x02,
+  STANDBY_250 = 0x03,
+  STANDBY_500 = 0x04,
+  STANDBY_1000 = 0x05,
+  STANDBY_2000 = 0x06,
+  STANDBY_4000 = 0x07
 } standby_time;
 
 struct {

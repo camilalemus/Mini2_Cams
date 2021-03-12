@@ -33,3 +33,5 @@ uint8_t Receive_Data(void) {
    // while (PIR1bits.RCIF == 0) {}
     return RCREG;
 }
+
+

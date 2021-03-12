@@ -23,6 +23,7 @@
 int count = 0;
 String flag_verde;
 String flag_rojo;
+String tempe;
 
 // Track time of last published messages and limit feed->save events to once
 // every IO_LOOP_DELAY milliseconds.
@@ -40,6 +41,7 @@ unsigned long lastUpdate = 0;
 // set up the 'counter' feed
 AdafruitIO_Feed *LED_VERDE = io.feed("GREEN_LED");
 AdafruitIO_Feed *LED_ROJO = io.feed("RED_LED");
+AdafruitIO_Feed *SENSOR = io.feed("BMP280");
 
 void setup() {
 
@@ -86,6 +88,18 @@ void loop() {
   //  LED_VERDE->save(count);
   //  LED_ROJO->save(count);
 
+    if (Serial2.read() == 'S'){
+     tempe = 'Temperatura= ';
+     tempe = tempe + Serial2.read();
+     tempe = tempe + Serial2.read();
+     tempe = tempe + char(Serial2.read());
+     tempe = tempe + Serial2.read();
+     tempe = tempe + Serial2.read();
+     tempe = tempe + char(167)+'C';
+    }
+
+    SENSOR -> save(tempe);
+
 }
 
 // this function is called whenever a 'counter' message
@@ -96,11 +110,11 @@ void handleMessage1(AdafruitIO_Data *data) {
   flag_verde = data->value();
   if (flag_verde == "ON"){
      Serial.print("ON");
-     Serial.write(49);
+     Serial2.write(49);
   }
   else if (flag_verde == "OFF") {
      Serial.print("OFF");
-     Serial.write(48);
+     Serial2.write(48);
   }
 
 }
@@ -110,11 +124,11 @@ void handleMessage2(AdafruitIO_Data *data) {
   flag_rojo = data->value();
     if (flag_rojo == "ON"){
      Serial.print("ON");
-     Serial.write(49);
+     Serial2.write(51);
     }
     else if (flag_rojo == "OFF") {
      Serial.print("OFF");
-     Serial.write(48);
+     Serial2.write(50);
     }
 
 }

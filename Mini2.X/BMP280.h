@@ -43,17 +43,18 @@ typedef enum {
     FILTER_16 = 0x04 // filter coefficient = 16
 } BMP280_filter;
 
-// standby (inactive) time in ms (used in normal mode), t_sb[2:0]
 
-typedef enum {
-    STANDBY_0_5 = 0x00, // standby time = 0.5 ms
-    STANDBY_62_5 = 0x01, // standby time = 62.5 ms
-    STANDBY_125 = 0x02, // standby time = 125 ms
-    STANDBY_250 = 0x03, // standby time = 250 ms
-    STANDBY_500 = 0x04, // standby time = 500 ms
-    STANDBY_1000 = 0x05, // standby time = 1000 ms
-    STANDBY_2000 = 0x06, // standby time = 2000 ms
-    STANDBY_4000 = 0x07 // standby time = 4000 ms
+// standby (inactive) time in ms (used in normal mode), t_sb[2:0]
+typedef enum
+{
+  STANDBY_0_5   =  0x00,  // standby time = 0.5 ms
+  STANDBY_62_5  =  0x01,  // standby time = 62.5 ms
+  STANDBY_125   =  0x02,  // standby time = 125 ms
+  STANDBY_250   =  0x03,  // standby time = 250 ms
+  STANDBY_500   =  0x04,  // standby time = 500 ms
+  STANDBY_1000  =  0x05,  // standby time = 1000 ms
+  STANDBY_2000  =  0x06,  // standby time = 2000 ms
+  STANDBY_4000  =  0x07   // standby time = 4000 ms
 } standby_time;
 
 struct {
@@ -90,4 +91,4 @@ void BMP280_Update();
 int BMP280_readTemperature(int32_t *temp);
 int BMP280_readPressure(uint32_t *pres);
 
-#endif	/* SPI_H */
+#endif	/* BMP280_H */
