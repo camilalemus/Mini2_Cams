@@ -1,4 +1,4 @@
-# 1 "I2C.c"
+# 1 "UART.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,10 +6,15 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "I2C.c" 2
-# 12 "I2C.c"
-# 1 "./I2C.h" 1
-# 18 "./I2C.h"
+# 1 "UART.c" 2
+# 1 "./UART.h" 1
+
+
+
+
+
+
+
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2490,8 +2495,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 18 "./I2C.h" 2
-
+# 8 "./UART.h" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2626,136 +2630,46 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 20 "./I2C.h" 2
-# 29 "./I2C.h"
-void I2C_Master_Init(const unsigned long c);
+# 9 "./UART.h" 2
 
 
+void UART_conf(void);
+uint8_t Receive_Data(void);
+void Send_Data(char X);
+void Send_String(char* X);
+# 1 "UART.c" 2
 
 
-
-
-
-void I2C_Master_Wait(void);
-
-
-
-void I2C_Master_Start(void);
-
-
-
-void I2C_Master_RepeatedStart(void);
-
-
-
-void I2C_Master_Stop(void);
-
-
-
-
-
-void I2C_Master_Write(unsigned d);
-
-
-
-
-unsigned short I2C_Master_Read(unsigned short a);
-
-
-
-void I2C_Slave_Init(uint8_t address);
-# 12 "I2C.c" 2
-
-
-
-
-void I2C_Master_Init(const unsigned long c)
-{
-    SSPCON = 0b00101000;
-    SSPCON2 = 0;
-    SSPADD = (8000000/(4*c))-1;
-    SSPSTAT = 0;
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
+void UART_conf(void) {
+    TXSTAbits.TXEN = 1;
+    PIE1bits.RCIE = 1;
+    PIE1bits.TXIE = 0;
+    TXSTAbits.SYNC = 0;
+    RCSTAbits.SPEN = 1;
+    TXSTAbits.TX9 = 0;
+    RCSTAbits.RC9 = 0;
+    BAUDCTLbits.BRG16 = 0;
+    SPBRG = ((4000000 / 16) / 9600) - 1;
+    TXSTAbits.BRGH = 1;
+    SPBRGH = 0;
+    RCSTAbits.CREN = 1;
 }
 
-
-
-
-
-
-
-void I2C_Master_Wait()
-{
-    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
+void Send_Data(char X) {
+    while (!TXIF);
+    TXREG = X;
 }
 
-
-
-void I2C_Master_Start()
-{
-    I2C_Master_Wait();
-    SSPCON2bits.SEN = 1;
+void Send_String(char* X){
+    while (*X)
+        Send_Data(*X++);
 }
 
-
-
-void I2C_Master_RepeatedStart()
-{
-    I2C_Master_Wait();
-    SSPCON2bits.RSEN = 1;
-}
-
-
-
-void I2C_Master_Stop()
-{
-    I2C_Master_Wait();
-    SSPCON2bits.PEN = 1;
-}
-
-
-
-
-
-void I2C_Master_Write(unsigned d)
-{
-    I2C_Master_Wait();
-    SSPBUF = d;
-}
-
-
-
-
-unsigned short I2C_Master_Read(unsigned short a)
-{
-    unsigned short temp;
-    I2C_Master_Wait();
-    SSPCON2bits.RCEN = 1;
-    I2C_Master_Wait();
-    temp = SSPBUF;
-    I2C_Master_Wait();
-    if(a == 1){
-        SSPCON2bits.ACKDT = 0;
-    }else{
-        SSPCON2bits.ACKDT = 1;
+uint8_t Receive_Data(void) {
+    if (RCSTAbits.OERR) {
+        RCSTAbits.CREN = 0;
+        RCSTAbits.CREN = 1;
     }
-    SSPCON2bits.ACKEN = 1;
-    return temp;
-}
 
-
-
-void I2C_Slave_Init(uint8_t address)
-{
-    SSPADD = address;
-    SSPCON = 0x36;
-    SSPSTAT = 0x80;
-    SSPCON2 = 0x01;
-    TRISC3 = 1;
-    TRISC4 = 1;
-    GIE = 1;
-    PEIE = 1;
-    SSPIF = 0;
-    SSPIE = 1;
+    return RCREG;
 }

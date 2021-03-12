@@ -2859,7 +2859,7 @@ extern int printf(const char *, ...);
 # 39 "mainm2.c" 2
 
 # 1 "./BMP280.h" 1
-# 17 "./BMP280.h"
+# 19 "./BMP280.h"
 typedef enum {
     MODE_SLEEP = 0x00,
     MODE_FORCED = 0x01,
@@ -2935,6 +2935,26 @@ int BMP280_readTemperature(int32_t *temp);
 int BMP280_readPressure(uint32_t *pres);
 # 40 "mainm2.c" 2
 
+# 1 "./UART.h" 1
+
+
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 9 "./UART.h" 2
+
+
+void UART_conf(void);
+uint8_t Receive_Data(void);
+void Send_Data(char X);
+void Send_String(char* X);
+# 41 "mainm2.c" 2
+
+
 
 
 
@@ -2976,5 +2996,5 @@ void setup(void){
     PORTD = 0;
     PORTA = 0;
     TRISA = 0;
-
+    I2C_Master_Init(100000);
 }

@@ -38,6 +38,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "BMP280.h"
+#include "UART.h"
+
 
 #define _XTAL_FREQ 8000000
 

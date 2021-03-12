@@ -14,6 +14,8 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <pic16f887.h>
+#include "I2C.h"
+
 typedef enum {
     MODE_SLEEP = 0x00, // sleep mode
     MODE_FORCED = 0x01, // forced mode

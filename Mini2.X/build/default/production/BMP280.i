@@ -2669,7 +2669,7 @@ void I2C_Slave_Init(uint8_t address);
 # 2 "BMP280.c" 2
 
 # 1 "./BMP280.h" 1
-# 17 "./BMP280.h"
+# 19 "./BMP280.h"
 typedef enum {
     MODE_SLEEP = 0x00,
     MODE_FORCED = 0x01,

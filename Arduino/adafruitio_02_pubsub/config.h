@@ -3,7 +3,7 @@
 // visit io.adafruit.com if you need to create an account,
 // or if you need your Adafruit IO key.
 #define IO_USERNAME  "Camila_Lemus"
-#define IO_KEY       "aio_YKww06UMizrLblh6u3zOTaamA0fo"
+#define IO_KEY       "aio_VjSa45Oqsks9HodLN2Nc5eFa7Enb"
 
 /******************************* WIFI **************************************/
 
@@ -18,8 +18,8 @@
 //   https://www.adafruit.com/product/4000
 //   - Adafruit AirLift Breakout -> https://www.adafruit.com/product/4201
 
-#define WIFI_SSID "TURBONETT_F895FB"
-#define WIFI_PASS "795C90366B"
+#define WIFI_SSID "Familia_Lone"
+#define WIFI_PASS "Bebetas.2020"
 
 // uncomment the following line if you are using airlift
 // #define USE_AIRLIFT

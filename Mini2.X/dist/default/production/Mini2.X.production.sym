@@ -5,42 +5,40 @@ __S1 BC 0 ABS 0
 __S2 0 0 ABS 0
 __S3 0 0 ABS 0
 _GIE 5F 0 ABS 0
-_BMP280_Write C5E 0 CODE 0
+_BMP280_Write C26 0 CODE 0
 __Hintentry 0 0 CODE 0
 __Lintentry 0 0 CODE 0
 _PEIE 5E 0 ABS 0
+_TXIF 64 0 ABS 0
 BMP280_begin@standby 26 0 BANK0 1
-_BMP280_readTemperature$938 4B 0 BANK0 1
-_main CB9 0 CODE 0
+_main C81 0 CODE 0
 ___sp 0 0 STACK 2
 btemp 7E 0 ABS 0
 start 0 0 CODE 0
 __end_of___aldiv B3 0 CODE 0
 BMP280_Configure@P_sampling 77 0 COMMON 1
 BMP280_Configure@T_sampling 76 0 COMMON 1
-_BMP280_readTemperature$939 46 0 BANK0 1
+_RCREG 1A 0 ABS 0
 _TRISA 85 0 ABS 0
 _SSPIE 463 0 ABS 0
 _TRISB 86 0 ABS 0
 _SSPIF 63 0 ABS 0
+_TXREG 19 0 ABS 0
 _PORTA 5 0 ABS 0
 reset_vec 0 0 CODE 0
 _TRISD 88 0 ABS 0
 _PORTB 6 0 ABS 0
+_SPBRG 99 0 ABS 0
 _ANSEL 188 0 ABS 0
 _PORTD 8 0 ABS 0
 BMP280_Configure@_config 22 0 BANK0 1
 wtemp0 7E 0 ABS 0
 __Hconfig 2009 0 CONFIG 4
 __Lconfig 0 0 CONFIG 4
-_BMP280_readPressure$940 4B 0 BANK0 1
-_I2C_Master_Stop C3E 0 CODE 0
+_I2C_Master_Stop BF3 0 CODE 0
 _adc_P A0 0 BANK1 1
-_BMP280_readPressure$941 3E 0 BANK0 1
 BMP280_readPressure@pres 4A 0 BANK0 1
 _adc_T 62 0 BANK0 1
-_BMP280_readPressure$942 42 0 BANK0 1
-_BMP280_readPressure$943 46 0 BANK0 1
 _BMP280_Read8 CEF 0 CODE 0
 _BMP280_Configure D2B 0 CODE 0
 BMP280_begin@T_sampling 23 0 BANK0 1
@@ -48,7 +46,7 @@ __size_of_BMP280_readPressure 0 0 ABS 0
 __Hram 0 0 ABS 0
 __Lram 0 0 ABS 0
 BMP280_Configure@standby 79 0 COMMON 1
-_setup 5 0 CODE 0
+_setup C06 0 CODE 0
 _pressure 66 0 BANK0 1
 __Hfunctab 0 0 ENTRY 0
 ?_I2C_Master_Read 70 0 COMMON 1
@@ -58,12 +56,14 @@ _TRISC4 43C 0 ABS 0
 BMP280_Configure@_ctrl_meas 21 0 BANK0 1
 __Hcommon 0 0 ABS 0
 __Lcommon 0 0 ABS 0
+_PIE1bits 8C 0 ABS 0
 __Heeprom_data 0 0 EEDATA 3
 __Leeprom_data 0 0 EEDATA 3
 _SSPADD 93 0 ABS 0
 ___int_sp 0 0 STACK 2
 ?___aldiv 70 0 COMMON 1
 ?___lldiv 70 0 COMMON 1
+_SPBRGH 9A 0 ABS 0
 _ANSELH 189 0 ABS 0
 _SSPBUF 13 0 ABS 0
 _BMP280_begin F24 0 CODE 0
@@ -80,25 +80,28 @@ __Hsfr3 0 0 ABS 0
 __Lsfr3 0 0 ABS 0
 BMP280_Read8@ret 79 0 COMMON 1
 _temperature 6A 0 BANK0 1
-__end_of_I2C_Master_Read CB9 0 CODE 0
+__end_of_I2C_Master_Read C81 0 CODE 0
 __size_of_I2C_Master_Read 0 0 ABS 0
 _BMP280_calib A4 0 BANK1 1
 ___stackhi 0 0 ABS 0
+_BMP280_readTemperature$1118 4B 0 BANK0 1
 __Hcode 0 0 ABS 0
 __Lcode 0 0 ABS 0
 _t_fine 5E 0 BANK0 1
-__end_of_I2C_Master_Wait C5E 0 CODE 0
+__end_of_I2C_Master_Wait 16 0 CODE 0
 __HcstackBANK0 0 0 ABS 0
 __LcstackBANK0 0 0 ABS 0
 __pcstackBANK0 20 0 BANK0 1
-__end_of_I2C_Master_Stop C47 0 CODE 0
+__end_of_I2C_Master_Init CEF 0 CODE 0
+__end_of_I2C_Master_Stop BFC 0 CODE 0
 ___lmul D73 0 CODE 0
 __Hinit 0 0 CODE 0
 __Linit 0 0 CODE 0
 __size_of_BMP280_readTemperature 0 0 ABS 0
-__end_of_main CEF 0 CODE 0
+__end_of_main CB7 0 CODE 0
 __Htext 0 0 ABS 0
 __Ltext 0 0 ABS 0
+_BMP280_readTemperature$1119 46 0 BANK0 1
 ___lmul@multiplier 26 0 BANK0 1
 end_of_initialization 7FC 0 CODE 0
 ___aldiv@sign 21 0 BANK0 1
@@ -108,11 +111,18 @@ BMP280_begin@mode 7D 0 COMMON 1
 _SSPCON2 91 0 ABS 0
 __size_of_I2C_Master_Wait 0 0 ABS 0
 BMP280_Read8@reg_addr 78 0 COMMON 1
+__size_of_I2C_Master_Init 0 0 ABS 0
 __size_of_I2C_Master_Stop 0 0 ABS 0
+_BMP280_readPressure$1120 4B 0 BANK0 1
+_RCSTAbits 18 0 ABS 0
 _TRISCbits 87 0 ABS 0
+_TXSTAbits 98 0 ABS 0
 __Hstrings 0 0 ABS 0
 __Lstrings 0 0 ABS 0
-_I2C_Master_Read C8B 0 CODE 0
+_BMP280_readPressure$1121 3E 0 BANK0 1
+_I2C_Master_Read C53 0 CODE 0
+_BMP280_readPressure$1122 42 0 BANK0 1
+_BMP280_readPressure$1123 46 0 BANK0 1
 I2C_Master_Write@d 70 0 COMMON 1
 __Hbank0 0 0 ABS 0
 __Lbank0 0 0 ABS 0
@@ -128,21 +138,22 @@ __Hpowerup 0 0 CODE 0
 _SSPSTAT 94 0 ABS 0
 __Lpowerup 0 0 CODE 0
 _SSPCON2bits 91 0 ABS 0
-__ptext1 5 0 CODE 0
-__ptext2 B3 0 CODE 0
+__ptext1 C06 0 CODE 0
+__ptext2 CB7 0 CODE 0
 BMP280_begin@P_sampling 24 0 BANK0 1
-__ptext3 E6D 0 CODE 0
-__ptext4 2C5 0 CODE 0
-__ptext5 D73 0 CODE 0
+__ptext3 B3 0 CODE 0
+__ptext4 E6D 0 CODE 0
+__ptext5 2C5 0 CODE 0
 __size_of_I2C_Master_Write 0 0 ABS 0
-__ptext6 E07 0 CODE 0
-__ptext7 16 0 CODE 0
-__ptext8 F24 0 CODE 0
-__ptext9 CEF 0 CODE 0
+__ptext6 D73 0 CODE 0
+__ptext7 E07 0 CODE 0
+__ptext8 16 0 CODE 0
+__ptext9 F24 0 CODE 0
 __Hclrtext 0 0 ABS 0
 __Lclrtext 0 0 ABS 0
 __end_of__initialization 7FC 0 CODE 0
 __end_of_BMP280_readTemperature 2C5 0 CODE 0
+_BAUDCTLbits 187 0 ABS 0
 __Hstack 0 0 STACK 2
 __Lstack 0 0 STACK 2
 __end_of___lldiv E6D 0 CODE 0
@@ -171,28 +182,29 @@ BMP280_Configure@mode 20 0 BANK0 1
 BMP280_Read16@ret 7B 0 COMMON 1
 ?_BMP280_Read16 76 0 COMMON 1
 BMP280_readTemperature@var1 3E 0 BANK0 1
-clear_ram0 C2D 0 CODE 0
+clear_ram0 BE2 0 CODE 0
 __HbssBANK0 0 0 ABS 0
 __LbssBANK0 0 0 ABS 0
 BMP280_readTemperature@var2 42 0 BANK0 1
 __pbssBANK0 5E 0 BANK0 1
-_I2C_Master_Start C35 0 CODE 0
+_I2C_Master_Start BEA 0 CODE 0
 __HbssBANK1 0 0 ABS 0
 __LbssBANK1 0 0 ABS 0
 __pbssBANK1 A0 0 BANK1 1
-__ptext10 DBB 0 CODE 0
-__ptext11 C8B 0 CODE 0
-__ptext12 D2B 0 CODE 0
-__ptext13 C5E 0 CODE 0
-__ptext14 C47 0 CODE 0
+__ptext10 CEF 0 CODE 0
+__ptext11 DBB 0 CODE 0
+__ptext12 C53 0 CODE 0
+__ptext13 D2B 0 CODE 0
+__ptext14 C26 0 CODE 0
 __end_of_BMP280_Read8 D2B 0 CODE 0
 I2C_Master_Read@a 70 0 COMMON 1
-__ptext15 C3E 0 CODE 0
-__ptext16 C35 0 CODE 0
+__ptext15 BFC 0 CODE 0
+__ptext16 BF3 0 CODE 0
 _BMP280_Update E6D 0 CODE 0
-__ptext17 C51 0 CODE 0
+__ptext17 BEA 0 CODE 0
 __size_of_BMP280_Read8 0 0 ABS 0
-__end_of_BMP280_Write C8B 0 CODE 0
+__ptext18 9 0 CODE 0
+__end_of_BMP280_Write C53 0 CODE 0
 __end_of_BMP280_begin 1000 0 CODE 0
 I2C_Master_Read@temp 74 0 COMMON 1
 __end_of_BMP280_Read16 E07 0 CODE 0
@@ -204,19 +216,19 @@ ___lldiv@divisor 70 0 COMMON 1
 __size_of___lldiv 0 0 ABS 0
 __size_of_BMP280_Write 0 0 ABS 0
 __size_of_BMP280_begin 0 0 ABS 0
-__end_of_setup 16 0 CODE 0
+__end_of_setup C26 0 CODE 0
 BMP280_Write@reg_addr 75 0 COMMON 1
 __Hreset_vec 0 0 CODE 0
 __Lreset_vec 0 0 CODE 0
 __size_of_BMP280_Read16 0 0 ABS 0
-_I2C_Master_Write C47 0 CODE 0
+_I2C_Master_Write BFC 0 CODE 0
 __end_of_BMP280_Update F24 0 CODE 0
 _BMP280_Read16 DBB 0 CODE 0
 __end_of_BMP280_Configure D73 0 CODE 0
 __size_of___aldiv 0 0 ABS 0
 intlevel0 0 0 ENTRY 0
 intlevel1 0 0 ENTRY 0
-__end_of_I2C_Master_Write C51 0 CODE 0
+__end_of_I2C_Master_Write C06 0 CODE 0
 BMP280_Configure@filter 78 0 COMMON 1
 intlevel2 0 0 ENTRY 0
 intlevel3 0 0 ENTRY 0
@@ -224,26 +236,28 @@ __size_of___lmul 0 0 ABS 0
 intlevel4 0 0 ENTRY 0
 intlevel5 0 0 ENTRY 0
 _BMP280_readPressure 2C5 0 CODE 0
-_I2C_Master_Wait C51 0 CODE 0
+_I2C_Master_Wait 9 0 CODE 0
 __HcstackCOMMON 0 0 ABS 0
 __LcstackCOMMON 0 0 ABS 0
 __pcstackCOMMON 70 0 COMMON 1
 start_initialization 7EB 0 CODE 0
 ___aldiv@quotient 22 0 BANK0 1
 ___lldiv@quotient 79 0 COMMON 1
-__end_of_I2C_Master_Start C3E 0 CODE 0
+__end_of_I2C_Master_Start BF3 0 CODE 0
+_I2C_Master_Init CB7 0 CODE 0
 __size_of_BMP280_Update 0 0 ABS 0
 _BMP280_readTemperature B3 0 CODE 0
 __Hmaintext 0 0 ABS 0
 __Lmaintext 0 0 ABS 0
 __end_of_BMP280_readPressure 7EB 0 CODE 0
 __size_of_BMP280_Configure 0 0 ABS 0
-__pmaintext CB9 0 CODE 0
+__pmaintext C81 0 CODE 0
 __initialization 7EB 0 CODE 0
 BMP280_readPressure@var1 57 0 BANK0 1
 BMP280_readPressure@var2 4F 0 BANK0 1
 BMP280_readTemperature@temp 4A 0 BANK0 1
 ___lmul@product 7A 0 COMMON 1
+I2C_Master_Init@c 20 0 BANK0 1
 BMP280_Write@_data 72 0 COMMON 1
 ___aldiv@dividend 74 0 COMMON 1
 ___lldiv@dividend 74 0 COMMON 1
@@ -253,71 +267,81 @@ cinit FD6 FFF CODE FD6 0
 cstackCOMMON 70 7D COMMON 70 1
 cstackBANK0 20 6D BANK0 20 1
 bssBANK1 A0 BB BANK1 A0 1
-text4 58A FD5 CODE 58A 0
-text2 166 589 CODE 166 0
-text8 1E48 1FFF CODE 1E48 0
-text3 1CDA 1E47 CODE 1CDA 0
-text7 2C 165 CODE 2C 0
-text6 1C0E 1CD9 CODE 1C0E 0
-text10 1B76 1C0D CODE 1B76 0
-text5 1AE6 1B75 CODE 1AE6 0
-text12 1A56 1AE5 CODE 1A56 0
-text9 19DE 1A55 CODE 19DE 0
-maintext 1972 19DD CODE 1972 0
-text11 1916 1971 CODE 1916 0
-text13 18BC 1915 CODE 18BC 0
-text1 A 2B CODE A 0
-text17 18A2 18BB CODE 18A2 0
-text14 188E 18A1 CODE 188E 0
-text15 187C 188D CODE 187C 0
-text16 186A 187B CODE 186A 0
-clrtext 185A 1869 CODE 185A 0
+text5 58A FD5 CODE 58A 0
+text3 166 589 CODE 166 0
+text9 1E48 1FFF CODE 1E48 0
+text4 1CDA 1E47 CODE 1CDA 0
+text8 2C 165 CODE 2C 0
+text7 1C0E 1CD9 CODE 1C0E 0
+text11 1B76 1C0D CODE 1B76 0
+text6 1AE6 1B75 CODE 1AE6 0
+text13 1A56 1AE5 CODE 1A56 0
+text10 19DE 1A55 CODE 19DE 0
+text2 196E 19DD CODE 196E 0
+maintext 1902 196D CODE 1902 0
+text12 18A6 1901 CODE 18A6 0
+text14 184C 18A5 CODE 184C 0
+text1 180C 184B CODE 180C 0
+text18 12 2B CODE 12 0
+text15 17F8 180B CODE 17F8 0
+text16 17E6 17F7 CODE 17E6 0
+text17 17D4 17E5 CODE 17D4 0
+clrtext 17C4 17D3 CODE 17C4 0
 %locals
 dist/default/production\Mini2.X.production.o
-C:\Users\camil\AppData\Local\Temp\smrk.s
-817 7EB 0 CODE 0
-820 7EB 0 CODE 0
-864 7EB 0 CODE 0
-865 7EC 0 CODE 0
-866 7ED 0 CODE 0
-867 7EE 0 CODE 0
-868 7EF 0 CODE 0
-871 7F4 0 CODE 0
-872 7F5 0 CODE 0
-873 7F6 0 CODE 0
-874 7F7 0 CODE 0
-880 7FC 0 CODE 0
-882 7FC 0 CODE 0
-883 7FD 0 CODE 0
-851 C2D 0 CODE 0
-852 C2D 0 CODE 0
-853 C2E 0 CODE 0
-854 C2E 0 CODE 0
-855 C2F 0 CODE 0
-856 C30 0 CODE 0
-857 C31 0 CODE 0
-858 C32 0 CODE 0
-859 C33 0 CODE 0
-860 C34 0 CODE 0
+C:\Users\camil\AppData\Local\Temp\sies.s
+993 7EB 0 CODE 0
+996 7EB 0 CODE 0
+1040 7EB 0 CODE 0
+1041 7EC 0 CODE 0
+1042 7ED 0 CODE 0
+1043 7EE 0 CODE 0
+1044 7EF 0 CODE 0
+1047 7F4 0 CODE 0
+1048 7F5 0 CODE 0
+1049 7F6 0 CODE 0
+1050 7F7 0 CODE 0
+1056 7FC 0 CODE 0
+1058 7FC 0 CODE 0
+1059 7FD 0 CODE 0
+1027 BE2 0 CODE 0
+1028 BE2 0 CODE 0
+1029 BE3 0 CODE 0
+1030 BE3 0 CODE 0
+1031 BE4 0 CODE 0
+1032 BE5 0 CODE 0
+1033 BE6 0 CODE 0
+1034 BE7 0 CODE 0
+1035 BE8 0 CODE 0
+1036 BE9 0 CODE 0
 mainm2.c
-57 CB9 0 CODE 0
-58 CB9 0 CODE 0
-59 CBE 0 CODE 0
-60 CCC 0 CODE 0
-61 CCC 0 CODE 0
-62 CDB 0 CODE 0
-63 CDF 0 CODE 0
-64 CE5 0 CODE 0
-73 5 0 CODE 0
-74 5 0 CODE 0
-75 8 0 CODE 0
-76 9 0 CODE 0
-77 C 0 CODE 0
-78 D 0 CODE 0
-79 10 0 CODE 0
-80 11 0 CODE 0
-81 12 0 CODE 0
-83 15 0 CODE 0
+59 C81 0 CODE 0
+60 C81 0 CODE 0
+61 C86 0 CODE 0
+63 C94 0 CODE 0
+64 CA3 0 CODE 0
+65 CA7 0 CODE 0
+66 CAD 0 CODE 0
+75 C06 0 CODE 0
+76 C06 0 CODE 0
+77 C09 0 CODE 0
+78 C0A 0 CODE 0
+79 C0D 0 CODE 0
+80 C0E 0 CODE 0
+81 C11 0 CODE 0
+82 C12 0 CODE 0
+83 C13 0 CODE 0
+84 C16 0 CODE 0
+85 C25 0 CODE 0
+I2C.c
+16 CB7 0 CODE 0
+18 CB7 0 CODE 0
+19 CBB 0 CODE 0
+20 CBE 0 CODE 0
+21 CEB 0 CODE 0
+22 CEC 0 CODE 0
+23 CED 0 CODE 0
+24 CEE 0 CODE 0
 BMP280.c
 242 B3 0 CODE 0
 246 B6 0 CODE 0
@@ -456,20 +480,20 @@ BMP280.c
 139 E02 0 CODE 0
 140 E06 0 CODE 0
 I2C.c
-74 C8B 0 CODE 0
-77 C8B 0 CODE 0
-78 C90 0 CODE 0
-79 C93 0 CODE 0
-80 C98 0 CODE 0
-81 CA1 0 CODE 0
-82 CA6 0 CODE 0
-83 CAC 0 CODE 0
-84 CAF 0 CODE 0
-85 CB0 0 CODE 0
-86 CB3 0 CODE 0
-87 CB3 0 CODE 0
-88 CB4 0 CODE 0
-89 CB8 0 CODE 0
+74 C53 0 CODE 0
+77 C53 0 CODE 0
+78 C58 0 CODE 0
+79 C5B 0 CODE 0
+80 C60 0 CODE 0
+81 C69 0 CODE 0
+82 C6E 0 CODE 0
+83 C74 0 CODE 0
+84 C77 0 CODE 0
+85 C78 0 CODE 0
+86 C7B 0 CODE 0
+87 C7B 0 CODE 0
+88 C7C 0 CODE 0
+89 C80 0 CODE 0
 BMP280.c
 143 D2B 0 CODE 0
 148 D2E 0 CODE 0
@@ -477,26 +501,26 @@ BMP280.c
 151 D5C 0 CODE 0
 152 D66 0 CODE 0
 153 D72 0 CODE 0
-96 C5E 0 CODE 0
-98 C5F 0 CODE 0
-99 C64 0 CODE 0
-100 C6D 0 CODE 0
-101 C79 0 CODE 0
-102 C85 0 CODE 0
-103 C8A 0 CODE 0
+96 C26 0 CODE 0
+98 C27 0 CODE 0
+99 C2C 0 CODE 0
+100 C35 0 CODE 0
+101 C41 0 CODE 0
+102 C4D 0 CODE 0
+103 C52 0 CODE 0
 I2C.c
-65 C47 0 CODE 0
-67 C47 0 CODE 0
-68 C4C 0 CODE 0
-69 C50 0 CODE 0
-55 C3E 0 CODE 0
-57 C3E 0 CODE 0
-58 C43 0 CODE 0
-59 C46 0 CODE 0
-39 C35 0 CODE 0
-41 C35 0 CODE 0
-42 C3A 0 CODE 0
-43 C3D 0 CODE 0
-32 C51 0 CODE 0
-34 C51 0 CODE 0
-35 C5D 0 CODE 0
+65 BFC 0 CODE 0
+67 BFC 0 CODE 0
+68 C01 0 CODE 0
+69 C05 0 CODE 0
+55 BF3 0 CODE 0
+57 BF3 0 CODE 0
+58 BF8 0 CODE 0
+59 BFB 0 CODE 0
+39 BEA 0 CODE 0
+41 BEA 0 CODE 0
+42 BEF 0 CODE 0
+43 BF2 0 CODE 0
+32 9 0 CODE 0
+34 9 0 CODE 0
+35 15 0 CODE 0
