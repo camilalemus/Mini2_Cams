@@ -54,6 +54,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1416
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1416: extern volatile unsigned char TRISA __attribute__((address(0x085)));
 [v _TRISA `Vuc ~T0 @X0 0 e@133 ]
+"29 ./I2C.h
+[; ;./I2C.h: 29: void I2C_Master_Init(const unsigned long c);
+[v _I2C_Master_Init `(v ~T0 @X0 0 ef1`Cul ]
 "12 mainm2.c
 [p x FOSC  =  INTRC_NOCLKOUT ]
 "13
@@ -393,6 +396,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "81
 [; ;mainm2.c: 81:     TRISA = 0;
 [e = _TRISA -> -> 0 `i `uc ]
+"82
+[; ;mainm2.c: 82:     I2C_Master_Init(100000);
+[e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
 "83
 [; ;mainm2.c: 83: }
 [e :UE 148 ]

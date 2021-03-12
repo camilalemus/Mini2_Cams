@@ -2976,5 +2976,5 @@ void setup(void){
     PORTD = 0;
     PORTA = 0;
     TRISA = 0;
-
+    I2C_Master_Init(100000);
 }

@@ -34,10 +34,15 @@
 
 #include <xc.h>
 #include "I2C.h"
-#include <xc.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "BMP280.h"
 
 #define _XTAL_FREQ 8000000
 
+signed long temperature;
+unsigned long pressure;
 
 //******************************************************************************
 //                          Instanciar funciones
@@ -51,9 +56,12 @@ void setup(void);
 
 void main(void) {
     setup();
+    BMP280_begin(MODE_NORMAL, SAMPLING_X1, SAMPLING_X1, FILTER_OFF, STANDBY_0_5);
     while (1) {
         __delay_ms(200);
         PORTA = 0b11111111;
+        BMP280_readTemperature(&temperature);  // read temperature
+        BMP280_readPressure(&pressure);  
     }
     return;
 }
@@ -71,6 +79,6 @@ void setup(void){
     PORTD = 0;
     PORTA = 0;
     TRISA = 0;
-//    I2C_Master_Init(100000);        // Inicializar Comuncación I2C
+    I2C_Master_Init(100000);        // Inicializar Comuncación I2C
 }
 

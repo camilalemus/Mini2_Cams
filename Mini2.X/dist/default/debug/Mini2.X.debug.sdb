@@ -95,7 +95,9 @@ STANDBY_4000 7
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"32 C:\Users\camil\Desktop\UVG\2021\Electrónica Digital 2\MiniProyecto2_Cams\Mini2_Cams\Mini2.X\I2C.c
+"16 C:\Users\camil\Desktop\UVG\2021\Electrónica Digital 2\MiniProyecto2_Cams\Mini2_Cams\Mini2.X\I2C.c
+[v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
+"32
 [v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
 "39
 [v _I2C_Master_Start I2C_Master_Start `(v  1 e 1 0 ]
@@ -130,7 +132,7 @@ STANDBY_4000 7
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S123 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S128 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -140,13 +142,13 @@ STANDBY_4000 7
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1557
-[u S132 . 1 `S123 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES132  1 e 1 @135 ]
+[u S137 . 1 `S128 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES137  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1979
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S144 . 1 `uc 1 SEN 1 0 :1:0 
+[s S149 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -156,8 +158,8 @@ STANDBY_4000 7
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1996
-[u S153 . 1 `S144 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES153  1 e 1 @145 ]
+[u S158 . 1 `S149 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES158  1 e 1 @145 ]
 "2048
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2177
@@ -192,25 +194,31 @@ STANDBY_4000 7
 {
 "83
 } 0
+"16 C:\Users\camil\Desktop\UVG\2021\Electrónica Digital 2\MiniProyecto2_Cams\Mini2_Cams\Mini2.X\I2C.c
+[v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
+{
+[v I2C_Master_Init@c c `DCul  1 p 4 5 ]
+"24
+} 0
 "242 C:\Users\camil\Desktop\UVG\2021\Electrónica Digital 2\MiniProyecto2_Cams\Mini2_Cams\Mini2.X\BMP280.c
 [v _BMP280_readTemperature BMP280_readTemperature `(i  1 e 2 0 ]
 {
 [v BMP280_readTemperature@temp temp `*.4l  1 a 1 wreg ]
 "244
-[v BMP280_readTemperature@var2 var2 `l  1 a 4 34 ]
-[v BMP280_readTemperature@var1 var1 `l  1 a 4 30 ]
+[v BMP280_readTemperature@var2 var2 `l  1 a 4 38 ]
+[v BMP280_readTemperature@var1 var1 `l  1 a 4 34 ]
 "242
 [v BMP280_readTemperature@temp temp `*.4l  1 a 1 wreg ]
 "246
-[v BMP280_readTemperature@temp temp `*.4l  1 a 1 42 ]
+[v BMP280_readTemperature@temp temp `*.4l  1 a 1 46 ]
 "261
 } 0
 "211
 [v _BMP280_Update BMP280_Update `(v  1 e 1 0 ]
 {
-[u S250 . 4 `[4]uc 1 b 4 0 `ul 1 dw 4 0 ]
+[u S255 . 4 `[4]uc 1 b 4 0 `ul 1 dw 4 0 ]
 "217
-[v BMP280_Update@ret ret `S250  1 a 4 10 ]
+[v BMP280_Update@ret ret `S255  1 a 4 0 ]
 "237
 } 0
 "266
@@ -218,22 +226,22 @@ STANDBY_4000 7
 {
 [v BMP280_readPressure@pres pres `*.4ul  1 a 1 wreg ]
 "268
-[v BMP280_readPressure@var1 var1 `l  1 a 4 55 ]
+[v BMP280_readPressure@var1 var1 `l  1 a 4 59 ]
 "269
-[v BMP280_readPressure@p p `ul  1 a 4 51 ]
+[v BMP280_readPressure@p p `ul  1 a 4 55 ]
 "268
-[v BMP280_readPressure@var2 var2 `l  1 a 4 47 ]
+[v BMP280_readPressure@var2 var2 `l  1 a 4 51 ]
 "266
 [v BMP280_readPressure@pres pres `*.4ul  1 a 1 wreg ]
 "272
-[v BMP280_readPressure@pres pres `*.4ul  1 a 1 42 ]
+[v BMP280_readPressure@pres pres `*.4ul  1 a 1 46 ]
 "302
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 {
 "17
-[v ___lmul@product product `ul  1 a 4 10 ]
+[v ___lmul@product product `ul  1 a 4 14 ]
 "15
 [v ___lmul@multiplier multiplier `ul  1 p 4 6 ]
 [v ___lmul@multiplicand multiplicand `ul  1 p 4 10 ]
@@ -243,9 +251,9 @@ STANDBY_4000 7
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
 "10
-[v ___lldiv@quotient quotient `ul  1 a 4 9 ]
+[v ___lldiv@quotient quotient `ul  1 a 4 0 ]
 "11
-[v ___lldiv@counter counter `uc  1 a 1 13 ]
+[v ___lldiv@counter counter `uc  1 a 1 4 ]
 "5
 [v ___lldiv@divisor divisor `ul  1 p 4 0 ]
 [v ___lldiv@dividend dividend `ul  1 p 4 4 ]
@@ -278,7 +286,7 @@ STANDBY_4000 7
 "160
 [v BMP280_begin@standby standby `E1324  1 p 1 6 ]
 "162
-[v BMP280_begin@mode mode `E1304  1 a 1 13 ]
+[v BMP280_begin@mode mode `E1304  1 a 1 11 ]
 "190
 } 0
 "106
@@ -297,9 +305,9 @@ STANDBY_4000 7
 [v _BMP280_Read16 BMP280_Read16 `(ui  1 e 2 0 ]
 {
 [v BMP280_Read16@reg_addr reg_addr `uc  1 a 1 wreg ]
-[u S219 . 2 `[2]uc 1 b 2 0 `ui 1 w 2 0 ]
+[u S224 . 2 `[2]uc 1 b 2 0 `ui 1 w 2 0 ]
 "128
-[v BMP280_Read16@ret ret `S219  1 a 2 11 ]
+[v BMP280_Read16@ret ret `S224  1 a 2 11 ]
 "122
 [v BMP280_Read16@reg_addr reg_addr `uc  1 a 1 wreg ]
 "130
