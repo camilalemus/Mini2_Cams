@@ -15,12 +15,12 @@
 //******************************************************************************
 
 void I2C_Master_Init(const unsigned long c) {
-    SSPCON = 0b00101000;
-    SSPCON2 = 0;
-    SSPADD = (_XTAL_FREQ / (4 * c)) - 1;
+    SSPCON = 0b00101000;            //Config de la comunicacion serial
+    SSPCON2 = 0;                    
+//    SSPADD = (_XTAL_FREQ / (4 * c)) - 1; 
     SSPSTAT = 0;
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
+    TRISCbits.TRISC3 = 0;       //Se configura como salida los pines de comunicacion
+    TRISCbits.TRISC4 = 0;       //SDA y SCL
 }
 //******************************************************************************
 // Función de espera: mientras se esté iniciada una comunicación,
@@ -31,14 +31,14 @@ void I2C_Master_Init(const unsigned long c) {
 //******************************************************************************
 
 void I2C_Master_Wait() {
-    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
-}
+    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F)); //Esperar a que se activen las banderas de q llego algo al buffer
+}                                                 //y que la comunicacion no esta ocupada
 //******************************************************************************
 // Función de inicio de la comunicación I2C PIC
 //******************************************************************************
 
 void I2C_Master_Start() {
-    I2C_Master_Wait(); //espera que se cumplan las condiciones adecuadas
+    I2C_Master_Wait(); 
     SSPCON2bits.SEN = 1; //inicia la comunicación i2c
 }
 //******************************************************************************
@@ -46,7 +46,7 @@ void I2C_Master_Start() {
 //******************************************************************************
 
 void I2C_Master_RepeatedStart() {
-    I2C_Master_Wait(); //espera que se cumplan las condiciones adecuadas
+    I2C_Master_Wait(); 
     SSPCON2bits.RSEN = 1; //reinicia la comunicación i2c
 }
 //******************************************************************************
@@ -54,7 +54,7 @@ void I2C_Master_RepeatedStart() {
 //******************************************************************************
 
 void I2C_Master_Stop() {
-    I2C_Master_Wait(); //espera que se cumplan las condiciones adecuadas
+    I2C_Master_Wait(); 
     SSPCON2bits.PEN = 1; //detener la comunicación i2c
 }
 //******************************************************************************
@@ -64,8 +64,8 @@ void I2C_Master_Stop() {
 //******************************************************************************
 
 void I2C_Master_Write(unsigned d) {
-    I2C_Master_Wait(); //espera que se cumplan las condiciones adecuadas
-    SSPBUF = d;
+    I2C_Master_Wait(); 
+    SSPBUF = d;             //Copia la data al buffer y comienza a mandar la informacion
 }
 //******************************************************************************
 //Función de recepción de datos enviados por el esclavo al maestro
@@ -74,15 +74,15 @@ void I2C_Master_Write(unsigned d) {
 
 unsigned short I2C_Master_Read(unsigned short a) {
     unsigned short temp1;
-    I2C_Master_Wait(); //espera que se cumplan las condiciones adecuadas
-    SSPCON2bits.RCEN = 1;
-    I2C_Master_Wait(); //espera que se cumplan las condiciones adecuadas
-    temp1 = SSPBUF;
-    I2C_Master_Wait(); //espera que se cumplan las condiciones adecuadas
+    I2C_Master_Wait(); 
+    SSPCON2bits.RCEN = 1;   //Modo recepcion del master
+    I2C_Master_Wait(); 
+    temp1 = SSPBUF;         //Copia el buffer a una variable
+    I2C_Master_Wait();
     if (a == 1) {
-        SSPCON2bits.ACKDT = 0;
+        SSPCON2bits.ACKDT = 0; //Acknowledge
     } else {
-        SSPCON2bits.ACKDT = 1;
+        SSPCON2bits.ACKDT = 1; //No acknowledge
     }
     SSPCON2bits.ACKEN = 1; // Iniciar secuencia de Acknowledge
     return temp1; // Regresar valor del dato leído
@@ -92,8 +92,8 @@ unsigned short I2C_Master_Read(unsigned short a) {
 //******************************************************************************
 
 void I2C_Slave_Init(uint8_t address) {
-    SSPADD = address;
-    SSPCON = 0x36; // 0b00110110
+    SSPADD = address;    //Direccion que identifica al esclavo
+    SSPCON = 0x36; // 0b00110110 CONFIGURACION DEL ESCLAVO
     SSPSTAT = 0x80; // 0b10000000
     SSPCON2 = 0x01; // 0b00000001
     TRISC3 = 1;

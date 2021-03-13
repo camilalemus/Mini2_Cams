@@ -159,7 +159,7 @@ void main(void) {
         }
 
     }
-    return;
+   
 }
 
 //******************************************************************************
@@ -171,10 +171,11 @@ void setup(void){
     ANSELH = 0;
     TRISB = 0;
     TRISD = 0;
+    TRISA = 0;
     PORTB = 0;
     PORTD = 0;
     PORTA = 0;
-    TRISA = 0;
+    
     I2C_Master_Init(100000);        // Inicializar Comuncación I2C
 }
 
@@ -199,7 +200,7 @@ void Send_Temp(void){
 
 void __interrupt() isr(void) {
     if (PIR1bits.RCIF == 1) {
-        RX = Receive_Data(); //Recibir la data proviniente del usart
+        RX = Receive_Data(); //Recibir la data proviniente del uart
         PIR1bits.RCIF = 0;
     }
 }

@@ -1,36 +1,36 @@
 #include <stdint.h>
 #include "I2C.h"
 #include "BMP280.h"
-
-#ifndef BMP280_I2C_ADDRESS
-#define BMP280_I2C_ADDRESS  0xEE        //Adress del sensor
-#endif
-
-#define BMP280_CHIP_ID        0x58      //Model of sensor
-
-#define BMP280_REG_DIG_T1     0x88
-#define BMP280_REG_DIG_T2     0x8A
-#define BMP280_REG_DIG_T3     0x8C
-
-#define BMP280_REG_DIG_P1     0x8E
-#define BMP280_REG_DIG_P2     0x90
-#define BMP280_REG_DIG_P3     0x92
-#define BMP280_REG_DIG_P4     0x94
-#define BMP280_REG_DIG_P5     0x96
-#define BMP280_REG_DIG_P6     0x98
-#define BMP280_REG_DIG_P7     0x9A
-#define BMP280_REG_DIG_P8     0x9C
-#define BMP280_REG_DIG_P9     0x9E
-
-#define BMP280_REG_CHIPID     0xD0      //Mira si el sensor coincide
-#define BMP280_REG_SOFTRESET  0xE0
-
-#define BMP280_REG_STATUS     0xF3
-#define BMP280_REG_CONTROL    0xF4
-#define BMP280_REG_CONFIG     0xF5
-#define BMP280_REG_PRESS_MSB  0xF7      //Presion msb
-
-int32_t adc_T, adc_P, t_fine;
+//
+//#ifndef BMP280_I2C_ADDRESS
+//#define BMP280_I2C_ADDRESS  0xEE        //Adress del sensor
+//#endif
+//
+//#define BMP280_CHIP_ID        0x58      //Model of sensor
+//
+//#define BMP280_REG_DIG_T1     0x88
+//#define BMP280_REG_DIG_T2     0x8A
+//#define BMP280_REG_DIG_T3     0x8C
+//
+//#define BMP280_REG_DIG_P1     0x8E
+//#define BMP280_REG_DIG_P2     0x90
+//#define BMP280_REG_DIG_P3     0x92
+//#define BMP280_REG_DIG_P4     0x94
+//#define BMP280_REG_DIG_P5     0x96
+//#define BMP280_REG_DIG_P6     0x98
+//#define BMP280_REG_DIG_P7     0x9A
+//#define BMP280_REG_DIG_P8     0x9C
+//#define BMP280_REG_DIG_P9     0x9E
+//
+//#define BMP280_REG_CHIPID     0xD0      //Mira si el sensor coincide
+//#define BMP280_REG_SOFTRESET  0xE0
+//
+//#define BMP280_REG_STATUS     0xF3
+//#define BMP280_REG_CONTROL    0xF4
+//#define BMP280_REG_CONFIG     0xF5
+//#define BMP280_REG_PRESS_MSB  0xF7      //Presion msb
+//
+//int32_t adc_T, adc_P, t_fine;
 
 
 //// BMP280 sensor modes, register ctrl_meas mode[1:0]

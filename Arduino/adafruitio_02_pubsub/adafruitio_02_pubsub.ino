@@ -47,9 +47,11 @@ void setup() {
 
   // start the serial connection
   Serial.begin(9600);
+  Serial2.begin(9600,SERIAL_8N1,16,17);
 
   // wait for serial monitor to open
   while(! Serial);
+  while(! Serial2);
 
   Serial.print("Connecting to Adafruit IO");
 
@@ -84,22 +86,25 @@ void loop() {
   // function. it keeps the client connected to
   // io.adafruit.com, and processes any incoming data.
   io.run();
+//
+//    LED_VERDE->save(count);
+//    LED_ROJO->save(count);
+//
+//    if (Serial2.read() == '#'){
+//     tempe = 'Temperatura= ';
+//     tempe = tempe + Serial2.read();
+//     tempe = tempe + Serial2.read();
+//     tempe = tempe + char(Serial2.read());
+//     tempe = tempe + Serial2.read();
+//     tempe = tempe + Serial2.read();
+//     tempe = tempe + char(167)+'C';
+//    }
 
-  //  LED_VERDE->save(count);
-  //  LED_ROJO->save(count);
+      //SENSOR -> save(tempe);
 
-    if (Serial2.read() == 'S'){
-     tempe = 'Temperatura= ';
-     tempe = tempe + Serial2.read();
-     tempe = tempe + Serial2.read();
-     tempe = tempe + char(Serial2.read());
-     tempe = tempe + Serial2.read();
-     tempe = tempe + Serial2.read();
-     tempe = tempe + char(167)+'C';
-    }
-
-    SENSOR -> save(tempe);
-
+      delay(100);
+      //Serial.print(tempe);
+      Serial.print(Serial2.read());
 }
 
 // this function is called whenever a 'counter' message
@@ -110,11 +115,11 @@ void handleMessage1(AdafruitIO_Data *data) {
   flag_verde = data->value();
   if (flag_verde == "ON"){
      Serial.print("ON");
-     Serial2.write(49);
+     Serial2.write('A');
   }
   else if (flag_verde == "OFF") {
      Serial.print("OFF");
-     Serial2.write(48);
+     Serial2.write('B');
   }
 
 }
@@ -124,11 +129,11 @@ void handleMessage2(AdafruitIO_Data *data) {
   flag_rojo = data->value();
     if (flag_rojo == "ON"){
      Serial.print("ON");
-     Serial2.write(51);
+     Serial2.write('C');
     }
     else if (flag_rojo == "OFF") {
      Serial.print("OFF");
-     Serial2.write(50);
+     Serial2.write('D');
     }
 
 }

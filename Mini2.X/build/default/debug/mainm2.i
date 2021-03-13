@@ -2641,7 +2641,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 # 20 "./I2C.h" 2
-# 29 "./I2C.h"
+# 30 "./I2C.h"
 void I2C_Master_Init(const unsigned long c);
 
 
@@ -2859,7 +2859,9 @@ extern int printf(const char *, ...);
 # 39 "mainm2.c" 2
 
 # 1 "./BMP280.h" 1
-# 19 "./BMP280.h"
+# 47 "./BMP280.h"
+int32_t adc_T, adc_P, t_fine;
+
 typedef enum {
     MODE_SLEEP = 0x00,
     MODE_FORCED = 0x01,
